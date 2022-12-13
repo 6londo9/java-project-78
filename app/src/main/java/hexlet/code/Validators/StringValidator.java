@@ -1,9 +1,11 @@
-package hexlet.code.validators;
+package hexlet.code.Validators;
 
 import hexlet.code.Utils.StringValidatorUtils;
-import hexlet.code.schemas.StringSchema;
+import hexlet.code.Schemas.StringSchema;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+@Getter
 @NoArgsConstructor
 public class StringValidator implements StringSchema {
 
@@ -15,10 +17,8 @@ public class StringValidator implements StringSchema {
     @Override
     public boolean isValid(Object newSchema) {
         StringValidatorUtils utils = new StringValidatorUtils();
-        if (utils.isNewSchema(this.schema, newSchema)) {
-            this.schema = newSchema;
-        }
-        return utils.isValidUtils(this.schema, this.required, this.minLength, this.ifContains);
+        this.schema = newSchema;
+        return utils.isValid(this);
     }
 
     @Override

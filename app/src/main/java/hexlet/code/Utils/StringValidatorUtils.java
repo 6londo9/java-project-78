@@ -1,24 +1,16 @@
 package hexlet.code.Utils;
 
+import hexlet.code.Validators.StringValidator;
 import lombok.NoArgsConstructor;
 
 import java.util.Objects;
 @NoArgsConstructor
 public class StringValidatorUtils {
 
-    public boolean isNewSchema(Object firstSchema, Object secondSchema) {
-        if (firstSchema == null) {
-            return secondSchema != null;
-        }
-        Object oldSchema = nullToBlank(firstSchema);
-        Object newSchema = nullToBlank(secondSchema);
-        return !(String.valueOf(oldSchema).equals(String.valueOf(newSchema)));
-    }
-
-    public boolean isValidUtils(Object schema, boolean isRequired, int minLength, String contains) {
-        return required(schema, isRequired)
-                && isContains(schema, contains)
-                && isMoreThanMinLength(schema, minLength);
+    public boolean isValid(StringValidator validator) {
+        return required(validator.getSchema(), validator.isRequired())
+                && isContains(validator.getSchema(), validator.getIfContains())
+                && isMoreThanMinLength(validator.getSchema(), validator.getMinLength());
     }
 
     private boolean isContains(Object schema, String contains) {
