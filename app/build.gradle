@@ -4,6 +4,7 @@ plugins {
     id 'com.adarshr.test-logger' version '3.0.0'
     id 'com.github.ben-manes.versions' version '0.39.0'
     id 'jacoco'
+    id "io.freefair.lombok" version "6.6"
 }
 
 group = 'hexlet.code'
@@ -31,6 +32,13 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-params:5.8.1'
     testImplementation 'org.assertj:assertj-core:3.21.0'
     testImplementation 'org.skyscreamer:jsonassert:1.5.0'
+
+    //Lombok
+    compileOnly 'org.projectlombok:lombok:1.18.24'
+    annotationProcessor 'org.projectlombok:lombok:1.18.24'
+
+    testCompileOnly 'org.projectlombok:lombok:1.18.24'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.24'
 }
 
 test {
