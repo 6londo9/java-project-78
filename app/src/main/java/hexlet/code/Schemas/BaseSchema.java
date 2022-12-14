@@ -16,7 +16,8 @@ public class BaseSchema {
         this.schema = newSchema;
         return validator.isValid(this);
     }
-    public void required() {
+    public BaseSchema required() {
         this.required = true;
+        return this;
     }
 }

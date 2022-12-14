@@ -10,7 +10,8 @@ public class MapValidatorUtils implements ValidatorUtils {
     public boolean isValid(BaseSchema schema) {
         MapSchema validator = (MapSchema) schema;
         return required(validator.getSchema(), validator.isRequired())
-                && isRequiredSize(validator.getSchema(), validator.getSizeof());
+                && isRequiredSize(validator.getSchema(), validator.getSizeof())
+                && isShapeTrue(validator.getSchema(), validator.getMap());
     }
 
     private boolean required(Object map, boolean isRequired) {
@@ -27,10 +28,24 @@ public class MapValidatorUtils implements ValidatorUtils {
         } else {
             if (map == null) {
                 return false;
-            } else {
-                Map<Object, Object> objectMap = (Map<Object, Object>) map;
-                return objectMap.size() >= size;
+            }
+            Map<Object, Object> objectMap = (Map<Object, Object>) map;
+            return objectMap.size() >= size;
+        }
+    }
+
+    private boolean isShapeTrue(Object map, Map<Object, BaseSchema> schemas) {
+        if (schemas == null) {
+            return true;
+        }
+        Map<Object, Object> objectMap = (Map<Object, Object>) map;
+        for (Map.Entry<Object, BaseSchema> entry : schemas.entrySet()) {
+            BaseSchema validator = entry.getValue();
+            Object key = entry.getKey();
+            if (!validator.isValid(objectMap.get(key))) {
+                return false;
             }
         }
+        return true;
     }
 }
