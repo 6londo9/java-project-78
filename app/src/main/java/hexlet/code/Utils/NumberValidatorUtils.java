@@ -1,17 +1,20 @@
 package hexlet.code.Utils;
 
-import hexlet.code.Validators.NumberValidator;
+import hexlet.code.Schemas.BaseSchema;
+import hexlet.code.Schemas.NumberSchema;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
 
 @NoArgsConstructor
-public class NumberValidatorUtils {
+public class NumberValidatorUtils implements ValidatorUtils {
 
-    public boolean isValid(NumberValidator validator) {
-        return required(validator.getNumber(), validator.isRequired())
-                && isPositive(validator.getNumber(), validator.isPositive())
-                && isInRange(validator.getNumber(), validator.getRange());
+    @Override
+    public boolean isValid(BaseSchema schema) {
+        NumberSchema validator = (NumberSchema) schema;
+        return required(validator.getSchema(), validator.isRequired())
+                && isPositive(validator.getSchema(), validator.isPositive())
+                && isInRange(validator.getSchema(), validator.getRange());
     }
 
     private boolean required(Object number, boolean isRequired) {

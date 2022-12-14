@@ -1,13 +1,16 @@
 package hexlet.code.Utils;
 
-import hexlet.code.Validators.StringValidator;
+import hexlet.code.Schemas.BaseSchema;
+import hexlet.code.Schemas.StringSchema;
 import lombok.NoArgsConstructor;
 
 import java.util.Objects;
 @NoArgsConstructor
-public class StringValidatorUtils {
+public class StringValidatorUtils implements ValidatorUtils {
 
-    public boolean isValid(StringValidator validator) {
+    @Override
+    public boolean isValid(BaseSchema schema) {
+        StringSchema validator = (StringSchema) schema;
         return required(validator.getSchema(), validator.isRequired())
                 && isContains(validator.getSchema(), validator.getIfContains())
                 && isMoreThanMinLength(validator.getSchema(), validator.getMinLength());

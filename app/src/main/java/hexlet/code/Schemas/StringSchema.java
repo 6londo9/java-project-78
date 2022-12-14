@@ -1,10 +1,24 @@
 package hexlet.code.Schemas;
 
-import hexlet.code.Validators.StringValidator;
+import hexlet.code.Utils.ValidatorUtils;
+import lombok.Getter;
 
-public interface StringSchema extends BaseSchema {
+@Getter
+public class StringSchema extends BaseSchema {
 
-    void minLength(int minLength);
+    private int minLength = 0;
+    private String ifContains = null;
 
-    StringValidator contains(Object schema);
+    public StringSchema(ValidatorUtils utils) {
+        super(utils);
+    }
+
+    public void minLength(int length) {
+        this.minLength = length;
+    }
+
+    public StringSchema contains(Object contains) {
+        this.ifContains = String.valueOf(contains);
+        return this;
+    }
 }

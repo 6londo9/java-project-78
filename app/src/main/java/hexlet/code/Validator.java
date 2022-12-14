@@ -1,15 +1,17 @@
 package hexlet.code;
 
-import hexlet.code.Validators.NumberValidator;
-import hexlet.code.Validators.StringValidator;
+import hexlet.code.Schemas.NumberSchema;
+import hexlet.code.Schemas.StringSchema;
+import hexlet.code.Utils.NumberValidatorUtils;
+import hexlet.code.Utils.StringValidatorUtils;
 
 public class Validator {
 
-    public StringValidator string() {
-        return new StringValidator();
+    public StringSchema string() {
+        return new StringSchema(new StringValidatorUtils());
     }
 
-    public NumberValidator number() {
-        return new NumberValidator();
+    public NumberSchema number() {
+        return new NumberSchema(new NumberValidatorUtils());
     }
 }
