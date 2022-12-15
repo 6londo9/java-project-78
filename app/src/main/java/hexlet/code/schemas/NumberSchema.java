@@ -6,7 +6,7 @@ import lombok.Getter;
 import java.util.List;
 
 @Getter
-public class NumberSchema extends BaseSchema {
+public final class NumberSchema extends BaseSchema {
 
     private boolean required = false;
     private List<Integer> range;

@@ -5,7 +5,7 @@ import hexlet.code.schemas.MapSchema;
 
 import java.util.Map;
 
-public class MapValidatorUtils implements ValidatorUtils {
+public final class MapValidatorUtils implements ValidatorUtils {
     @Override
     public boolean isValid(BaseSchema schema) {
         MapSchema validator = (MapSchema) schema;

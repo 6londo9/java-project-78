@@ -14,7 +14,7 @@ public class BaseSchema {
     BaseSchema(ValidatorUtils utils) {
         this.validator = utils;
     }
-    public boolean isValid(Object newSchema) {
+    public final boolean isValid(Object newSchema) {
         this.schema = newSchema;
         return validator.isValid(this);
     }

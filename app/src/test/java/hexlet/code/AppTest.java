@@ -15,6 +15,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class AppTest {
 
     private static Validator v;
+    private final int positiveNumber = 4;
+    private final int negativeNumber = -100;
+    private final int startOfRange = 3;
+    private final int endOfRange = 11;
+    private final int inTheRange = 5;
+    private final int outOfRange = 12;
 
     @BeforeAll
     public static void beforeAll() {
@@ -27,13 +33,13 @@ public class AppTest {
         StringSchema schema = v.string();
 
         assertThat(schema.isValid("")).isTrue();
-        assertThat(schema.isValid(5)).isFalse();
+        assertThat(schema.isValid(positiveNumber)).isFalse();
         assertThat(schema.isValid("valid")).isTrue();
 
         schema.required();
         assertThat(schema.isValid("")).isFalse();
 
-        schema.minLength(3);
+        schema.minLength(positiveNumber);
         assertThat(schema.isValid("true")).isTrue();
         assertThat(schema.isValid("no")).isFalse();
 
@@ -50,22 +56,22 @@ public class AppTest {
         assertThat(schema.isValid(0)).isTrue();
 
         assertThat(schema.positive().isValid(null)).isTrue();
-        assertThat(schema.positive().isValid(-5)).isFalse();
+        assertThat(schema.positive().isValid(negativeNumber)).isFalse();
         assertThat(schema.positive().isValid(0)).isFalse();
 
         schema.required();
 
         assertThat(schema.isValid(null)).isFalse();
         assertThat(schema.isValid("0")).isFalse();
-        assertThat(schema.isValid(-5)).isFalse();
-        assertThat(schema.isValid(4)).isTrue();
+        assertThat(schema.isValid(negativeNumber)).isFalse();
+        assertThat(schema.isValid(positiveNumber)).isTrue();
 
-        schema.range(3, 11);
+        schema.range(startOfRange, endOfRange);
 
-        assertThat(schema.isValid(3)).isTrue();
-        assertThat(schema.isValid(4)).isTrue();
+        assertThat(schema.isValid(startOfRange)).isTrue();
+        assertThat(schema.isValid(inTheRange)).isTrue();
         assertThat(schema.isValid(0)).isFalse();
-        assertThat(schema.isValid(12)).isFalse();
+        assertThat(schema.isValid(outOfRange)).isFalse();
     }
 
     @Test
@@ -102,7 +108,7 @@ public class AppTest {
 
         Map<String, Object> human1 = new HashMap<>();
         human1.put("name", "Kolya");
-        human1.put("age", 100);
+        human1.put("age", positiveNumber);
         assertThat(schema.isValid(human1)).isTrue();
 
         Map<String, Object> human2 = new HashMap<>();
@@ -117,7 +123,7 @@ public class AppTest {
 
         Map<String, Object> human4 = new HashMap<>();
         human4.put("name", "Valya");
-        human4.put("age", -5);
+        human4.put("age", negativeNumber);
         assertThat(schema.isValid(human4)).isFalse();
     }
 }

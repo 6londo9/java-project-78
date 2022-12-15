@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 
 import java.util.Objects;
 @NoArgsConstructor
-public class StringValidatorUtils implements ValidatorUtils {
+public final class StringValidatorUtils implements ValidatorUtils {
 
     @Override
     public boolean isValid(BaseSchema schema) {

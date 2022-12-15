@@ -4,7 +4,7 @@ import hexlet.code.utils.ValidatorUtils;
 import lombok.Getter;
 
 @Getter
-public class StringSchema extends BaseSchema {
+public final class StringSchema extends BaseSchema {
 
     private int minLength = 0;
     private String ifContains = null;

@@ -7,7 +7,7 @@ import lombok.Getter;
 import java.util.Map;
 
 @Getter
-public class MapSchema extends BaseSchema {
+public final class MapSchema extends BaseSchema {
 
     private int sizeof = 0;
     private boolean required = false;

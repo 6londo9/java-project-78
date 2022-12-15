@@ -7,7 +7,7 @@ import hexlet.code.utils.MapValidatorUtils;
 import hexlet.code.utils.NumberValidatorUtils;
 import hexlet.code.utils.StringValidatorUtils;
 
-public class Validator {
+public final class Validator {
 
     public StringSchema string() {
         return new StringSchema(new StringValidatorUtils());

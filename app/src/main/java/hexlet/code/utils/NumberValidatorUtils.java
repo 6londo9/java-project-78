@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 
 @NoArgsConstructor
-public class NumberValidatorUtils implements ValidatorUtils {
+public final class NumberValidatorUtils implements ValidatorUtils {
 
     @Override
     public boolean isValid(BaseSchema schema) {
