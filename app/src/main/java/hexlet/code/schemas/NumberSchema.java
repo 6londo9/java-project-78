@@ -1,6 +1,6 @@
-package hexlet.code;
+package hexlet.code.schemas;
 
-import hexlet.code.Utils.ValidatorUtils;
+import hexlet.code.utils.ValidatorUtils;
 import lombok.Getter;
 
 import java.util.List;
