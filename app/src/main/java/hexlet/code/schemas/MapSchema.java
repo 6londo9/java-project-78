@@ -10,10 +10,16 @@ import java.util.Map;
 public class MapSchema extends BaseSchema {
 
     private int sizeof = 0;
+    private boolean required = false;
     private Map<Object, BaseSchema> map = null;
 
     public MapSchema(ValidatorUtils utils) {
         super(utils);
+    }
+
+    public MapSchema required() {
+        this.required = true;
+        return this;
     }
 
     public void sizeof(int size) {

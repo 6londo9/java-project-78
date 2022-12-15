@@ -8,9 +8,15 @@ public class StringSchema extends BaseSchema {
 
     private int minLength = 0;
     private String ifContains = null;
+    private boolean required = false;
 
     public StringSchema(ValidatorUtils utils) {
         super(utils);
+    }
+
+    public StringSchema required() {
+        this.required = true;
+        return this;
     }
 
     public void minLength(int length) {
