@@ -1,8 +1,5 @@
 package hexlet.code;
 
-import hexlet.code.Schemas.MapSchema;
-import hexlet.code.Schemas.NumberSchema;
-import hexlet.code.Schemas.StringSchema;
 import hexlet.code.Utils.MapValidatorUtils;
 import hexlet.code.Utils.NumberValidatorUtils;
 import hexlet.code.Utils.StringValidatorUtils;

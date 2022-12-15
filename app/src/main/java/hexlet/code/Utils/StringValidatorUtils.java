@@ -1,7 +1,7 @@
 package hexlet.code.Utils;
 
-import hexlet.code.Schemas.BaseSchema;
-import hexlet.code.Schemas.StringSchema;
+import hexlet.code.BaseSchema;
+import hexlet.code.StringSchema;
 import lombok.NoArgsConstructor;
 
 import java.util.Objects;

@@ -1,9 +1,5 @@
 package hexlet.code;
 
-import hexlet.code.Schemas.BaseSchema;
-import hexlet.code.Schemas.MapSchema;
-import hexlet.code.Schemas.NumberSchema;
-import hexlet.code.Schemas.StringSchema;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 

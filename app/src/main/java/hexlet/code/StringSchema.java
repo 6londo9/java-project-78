@@ -1,4 +1,4 @@
-package hexlet.code.Schemas;
+package hexlet.code;
 
 import hexlet.code.Utils.ValidatorUtils;
 import lombok.Getter;
