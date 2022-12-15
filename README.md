@@ -86,7 +86,8 @@ human1.put("name", "Ilya");
 human1.put("age", 25);
 
 Map<String, BaseSchema> schemas = new HashMap<>(); 
-// make sure that you're making the exact same key, that is given in Map, which you need to check
+// make sure that you're making the exact same key, that is given in Map, which you need to check.
+// Current validator will work only if key instanceOf String.
 schemas.put("name", v.string().required());
 schemas.put("age", v.number().positive());
 schema.shape(schemas);

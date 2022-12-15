@@ -29,17 +29,17 @@ public class MapValidatorUtils implements ValidatorUtils {
             if (map == null) {
                 return false;
             }
-            Map<Object, Object> objectMap = (Map<Object, Object>) map;
+            Map<String, Object> objectMap = (Map<String, Object>) map;
             return objectMap.size() >= size;
         }
     }
 
-    private boolean isShapeTrue(Object map, Map<Object, BaseSchema> schemas) {
+    private boolean isShapeTrue(Object map, Map<String, BaseSchema> schemas) {
         if (schemas == null) {
             return true;
         }
-        Map<Object, Object> objectMap = (Map<Object, Object>) map;
-        for (Map.Entry<Object, BaseSchema> entry : schemas.entrySet()) {
+        Map<String, Object> objectMap = (Map<String, Object>) map;
+        for (Map.Entry<String, BaseSchema> entry : schemas.entrySet()) {
             BaseSchema validator = entry.getValue();
             Object key = entry.getKey();
             if (!validator.isValid(objectMap.get(key))) {

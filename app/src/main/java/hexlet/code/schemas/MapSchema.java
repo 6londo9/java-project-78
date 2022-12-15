@@ -11,7 +11,7 @@ public class MapSchema extends BaseSchema {
 
     private int sizeof = 0;
     private boolean required = false;
-    private Map<Object, BaseSchema> map = null;
+    private Map<String, BaseSchema> map = null;
 
     public MapSchema(ValidatorUtils utils) {
         super(utils);
@@ -26,7 +26,7 @@ public class MapSchema extends BaseSchema {
         this.sizeof = size;
     }
 
-    public void shape(Map<Object, BaseSchema> schema) {
+    public void shape(Map<String, BaseSchema> schema) {
         this.map = schema;
     }
 }
