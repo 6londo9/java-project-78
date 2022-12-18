@@ -8,7 +8,7 @@ import java.util.function.Predicate;
 
 @Getter
 public abstract class BaseSchema {
-    private Map<String, Predicate> checks = new LinkedHashMap<>();
+    private final Map<String, Predicate> checks = new LinkedHashMap<>();
 
     public final boolean isValid(Object newSchema) {
         for (Map.Entry<String, Predicate> entry : checks.entrySet()) {
