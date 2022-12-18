@@ -3,21 +3,18 @@ package hexlet.code;
 import hexlet.code.schemas.MapSchema;
 import hexlet.code.schemas.NumberSchema;
 import hexlet.code.schemas.StringSchema;
-import hexlet.code.utils.MapValidatorUtils;
-import hexlet.code.utils.NumberValidatorUtils;
-import hexlet.code.utils.StringValidatorUtils;
 
 public final class Validator {
 
     public StringSchema string() {
-        return new StringSchema(new StringValidatorUtils());
+        return new StringSchema();
     }
 
     public NumberSchema number() {
-        return new NumberSchema(new NumberValidatorUtils());
+        return new NumberSchema();
     }
 
     public MapSchema map() {
-        return new MapSchema(new MapValidatorUtils());
+        return new MapSchema();
     }
 }

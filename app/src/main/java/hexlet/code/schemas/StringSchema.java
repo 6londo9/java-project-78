@@ -1,30 +1,34 @@
 package hexlet.code.schemas;
 
-import hexlet.code.utils.ValidatorUtils;
 import lombok.Getter;
+
+import java.util.Objects;
 
 @Getter
 public final class StringSchema extends BaseSchema {
 
-    private int minLength = 0;
-    private String ifContains = null;
-    private boolean required = false;
+    public StringSchema() {
 
-    public StringSchema(ValidatorUtils utils) {
-        super(utils);
     }
 
+    @Override
     public StringSchema required() {
-        this.required = true;
+        addCheck("required", value -> value != null && ((value instanceof String) && !value.equals("")));
         return this;
     }
 
-    public void minLength(int length) {
-        this.minLength = length;
+    public StringSchema minLength(int length) {
+        addCheck("minLength", value -> String.valueOf(nullToBlank(value)).length() >= length);
+        return this;
     }
 
-    public StringSchema contains(Object contains) {
-        this.ifContains = String.valueOf(contains);
+    public StringSchema contains(String str) {
+        addCheck("contains", value -> String.valueOf(value).contains(str));
         return this;
+    }
+
+
+    private Object nullToBlank(Object value) {
+        return Objects.requireNonNullElse(value, "");
     }
 }

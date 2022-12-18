@@ -1,25 +1,26 @@
 package hexlet.code.schemas;
 
-
-import hexlet.code.utils.ValidatorUtils;
 import lombok.Getter;
-import lombok.Setter;
+
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.function.Predicate;
 
 @Getter
-public class BaseSchema {
-    private Object schema = null;
-    private final ValidatorUtils validator;
-    @Setter
-    private boolean required = false;
-    BaseSchema(ValidatorUtils utils) {
-        this.validator = utils;
-    }
+public abstract class BaseSchema {
+    private Map<String, Predicate> checks = new LinkedHashMap<>();
+
     public final boolean isValid(Object newSchema) {
-        this.schema = newSchema;
-        return validator.isValid(this);
+        for (Map.Entry<String, Predicate> entry : checks.entrySet()) {
+            if (!entry.getValue().test(newSchema)) {
+                return false;
+            }
+        }
+        return true;
     }
-//    public BaseSchema required() {
-//        this.required = true;
-//        return this;
-//    }
+
+    public abstract Object required();
+    public final void addCheck(String checkName, Predicate checkValue) {
+        checks.put(checkName, checkValue);
+    }
 }

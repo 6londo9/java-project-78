@@ -1,32 +1,29 @@
 package hexlet.code.schemas;
 
-import hexlet.code.utils.ValidatorUtils;
 import lombok.Getter;
-
-import java.util.List;
 
 @Getter
 public final class NumberSchema extends BaseSchema {
 
-    private boolean required = false;
-    private List<Integer> range;
-    private boolean positive = false;
+    public NumberSchema() {
 
-    public NumberSchema(ValidatorUtils utils) {
-        super(utils);
     }
 
+    @Override
     public NumberSchema required() {
-        this.required = true;
+        addCheck("required", value -> (value instanceof Integer)
+                && (int) value > 0);
         return this;
     }
 
-    public void range(Integer begin, Integer end) {
-        this.range = List.of(begin, end);
+    public NumberSchema range(Integer begin, Integer end) {
+        addCheck("range", value -> ((int) value >= begin
+                && (int) value <= end));
+        return this;
     }
 
     public NumberSchema positive() {
-        this.positive = true;
+        addCheck("positive", value -> value == null || (value instanceof Integer) && (Integer) value > 0);
         return this;
     }
 }

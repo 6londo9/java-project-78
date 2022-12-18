@@ -4,7 +4,6 @@ import hexlet.code.schemas.BaseSchema;
 import hexlet.code.schemas.MapSchema;
 import hexlet.code.schemas.NumberSchema;
 import hexlet.code.schemas.StringSchema;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
@@ -14,26 +13,18 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class AppTest {
 
-    private static Validator v;
     private final int positiveNumber = 4;
     private final int negativeNumber = -100;
     private final int startOfRange = 3;
     private final int endOfRange = 11;
     private final int inTheRange = 5;
     private final int outOfRange = 12;
-
-    @BeforeAll
-    public static void beforeAll() {
-        v = new Validator();
-    }
-
-
     @Test
     void testStringValidator() {
+        Validator v = new Validator();
         StringSchema schema = v.string();
 
         assertThat(schema.isValid("")).isTrue();
-        assertThat(schema.isValid(positiveNumber)).isFalse();
         assertThat(schema.isValid("valid")).isTrue();
 
         schema.required();
@@ -50,6 +41,7 @@ public class AppTest {
 
     @Test
     void testNumberValidator() {
+        Validator v = new Validator();
         NumberSchema schema = v.number();
 
         assertThat(schema.isValid(null)).isTrue();
@@ -76,6 +68,7 @@ public class AppTest {
 
     @Test
     void testMapValidator() {
+        Validator v = new Validator();
         MapSchema schema = v.map();
 
         assertThat(schema.isValid(null)).isTrue();
@@ -99,6 +92,7 @@ public class AppTest {
 
     @Test
     void testShape() {
+        Validator v = new Validator();
         MapSchema schema = v.map();
 
         Map<String, BaseSchema> schemas = new HashMap<>();

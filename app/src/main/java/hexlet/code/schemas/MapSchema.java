@@ -1,32 +1,36 @@
 package hexlet.code.schemas;
 
-
-import hexlet.code.utils.ValidatorUtils;
 import lombok.Getter;
-
 import java.util.Map;
 
 @Getter
 public final class MapSchema extends BaseSchema {
 
-    private int sizeof = 0;
-    private boolean required = false;
-    private Map<String, BaseSchema> map = null;
+    public MapSchema() {
 
-    public MapSchema(ValidatorUtils utils) {
-        super(utils);
     }
 
+    @Override
     public MapSchema required() {
-        this.required = true;
+        addCheck("required", value -> value instanceof Map);
         return this;
     }
 
-    public void sizeof(int size) {
-        this.sizeof = size;
+    public MapSchema sizeof(int size) {
+        addCheck("sizeof", value -> ((Map<String, Object>) value).size() >= size);
+        return this;
     }
 
-    public void shape(Map<String, BaseSchema> schema) {
-        this.map = schema;
+    public MapSchema shape(Map<String, BaseSchema> schemas) {
+        addCheck("shape", value -> {
+            for (Map.Entry<String, Object> entry : ((Map<String, Object>) value).entrySet()) {
+                BaseSchema validator = schemas.get(entry.getKey());
+                if (!validator.isValid(entry.getValue())) {
+                    return false;
+                }
+            }
+            return true;
+        });
+        return this;
     }
 }
