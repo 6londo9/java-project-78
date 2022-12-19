@@ -15,7 +15,6 @@ ___
 StringSchema schema = v.string();
 
 schema.isValid(null); // true
-schema.isValid(2); // false
 schema.isValid("true"); // true
 
 schema.required(); // now the Strings will be valid only if they are String types
