@@ -22,9 +22,4 @@ public final class StringSchema extends BaseSchema {
         addCheck("contains", value -> String.valueOf(value).contains(str));
         return this;
     }
-
-
-    private Object nullToBlank(Object value) {
-        return Objects.requireNonNullElse(value, "");
-    }
 }
