@@ -1,18 +1,13 @@
 package hexlet.code.schemas;
 
-import lombok.Getter;
-
-@Getter
 public final class NumberSchema extends BaseSchema {
 
     public NumberSchema() {
 
     }
 
-    @Override
     public NumberSchema required() {
-        addCheck("required", value -> (value instanceof Integer)
-                && (int) value > 0);
+        addCheck("required", value -> value instanceof Integer);
         return this;
     }
 

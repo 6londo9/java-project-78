@@ -1,24 +1,20 @@
 package hexlet.code.schemas;
 
-import lombok.Getter;
-
 import java.util.Objects;
 
-@Getter
 public final class StringSchema extends BaseSchema {
 
     public StringSchema() {
 
     }
 
-    @Override
     public StringSchema required() {
-        addCheck("required", value -> value != null && ((value instanceof String) && !value.equals("")));
+        addCheck("required", value -> (value instanceof String) && !((String) value).isEmpty());
         return this;
     }
 
     public StringSchema minLength(int length) {
-        addCheck("minLength", value -> String.valueOf(nullToBlank(value)).length() >= length);
+        addCheck("minLength", value -> ((String) value).length() >= length);
         return this;
     }
 

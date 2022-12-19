@@ -1,16 +1,13 @@
 package hexlet.code.schemas;
 
-import lombok.Getter;
 import java.util.Map;
 
-@Getter
 public final class MapSchema extends BaseSchema {
 
     public MapSchema() {
 
     }
 
-    @Override
     public MapSchema required() {
         addCheck("required", value -> value instanceof Map);
         return this;
